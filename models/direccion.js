@@ -37,6 +37,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'direccion'
+    tableName: 'direccion',
+    timestamps: false
   });
 };

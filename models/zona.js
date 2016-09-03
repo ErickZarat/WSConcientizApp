@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'zona'
+    tableName: 'zona',
+    timestamps: false
   });
 };

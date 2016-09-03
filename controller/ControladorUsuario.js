@@ -10,14 +10,14 @@ module.exports=function (modelo) {
         },
         login:function (req,res) {
             modelo.sequelize.query("CALL sp_autenticarUsuario('"+req.body.nick+"','"+req.body.contrasena+"');")
-                .then(function () {
-                    res.send({"mensaje":"Registro insertado correctamente","status":"200"});
+                .then(function (user) {
+                    if(user.length>0)
+                        res.json(genToken(user));
+                    else
+                        res.json({"user":[]});
                 }).error(function (err) {
-                res.send({"mensaje":"Error "+err,"status":"500"});
+                    res.send({"mensaje":"Error "+err,"status":"500"});
             });
-        },
-        logout:function (req,res) {
-            
         },
         registro:function (req,res) {
             modelo.sequelize.query("CALL sp_registraUsuario('"+req.body.nombre+"','"+req.body.correo+"','"+req.body.facebook+"','"+req.body.telefono+"','"+req.body.fechaNacimiento+"','"+req.body.nick+"','"+req.body.contrasena+"','"+req.body.rol+"');")
