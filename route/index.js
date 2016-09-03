@@ -15,7 +15,10 @@ module.exports=(function(modelo){
 
     ruta.get('/token',usuario.tokenGenerator);
 
+    ruta.get('/prueba',usuario.prueba);
+
+    //Token Validation
     ruta.use(usuario.tokenMiddleware);
-    ruta.get('/prueba',usuario.prueba)
+
     return ruta;
 });

@@ -5,6 +5,9 @@ var jwt=require('jsonwebtoken');
 var conf=require('../conf.js');
 module.exports=function (modelo) {
     return{
+        prueba:function (req,res) {
+            res.send("<h1>Its Works!</h1>");
+        },
         login:function (req,res) {
             modelo.sequelize.query("CALL sp_autenticarUsuario('"+req.body.nick+"','"+req.body.contrasena+"');")
                 .then(function () {
@@ -17,7 +20,7 @@ module.exports=function (modelo) {
             
         },
         registro:function (req,res) {
-            modelo.sequelize.query("CALL sp_registraUsuario('"+req.body.nombre+"','"+req.body.correo+"','"+req.body.facebook+"','")
+            modelo.sequelize.query("CALL sp_registraUsuario('"+req.body.nombre+"','"+req.body.correo+"','"+req.body.facebook+"','"+req.body.telefono+"','"+req.body.fechaNacimiento+"','"+req.body.nick+"','"+req.body.contrasena+"','"+req.body.rol+"');")
                 .then(function () {
                     res.send({"mensaje":"Registro insertado correctamente","status":"200"});
                 }).error(function (err) {
