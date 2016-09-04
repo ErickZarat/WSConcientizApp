@@ -6,7 +6,7 @@ var ruta=require('express').Router();
         var usuario=require('../controller/ControladorUsuario.js')(modelo);
         var zona=require('../controller/ControladorZona.js')(modelo);
         var direccion=require('../controller/ControladorDireccion.js')(modelo);
-
+        var evento=require('../controller/ControladorEvento.js')(modelo);
             ruta.get('/',function(peticion,respuesta){
             respuesta.send("Servicio iniciado");
         });
@@ -25,9 +25,14 @@ var ruta=require('express').Router();
         ruta.use(usuario.tokenMiddleware);
 
         ruta.get('/zona',zona.getAll);
+
         ruta.get('/direccion/:id',direccion.get);
         ruta.post('/direccion',direccion.add);
         ruta.put('/direccion/:id',direccion.get);
+
+        ruta.put('/evento/:id',evento.edit);
+        ruta.post('/evento',evento.add);
+        ruta.get('/evento/:id',evento.get);
 
         return ruta;
 });
