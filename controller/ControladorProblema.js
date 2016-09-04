@@ -12,7 +12,7 @@ module.exports = function (modelo) {
             });
         },
         list:function (req, res) {
-            modelo.prueba.findAll({
+            modelo.problema.findAll({
                 where: {
                     id_problema:req.params.id
                 }
