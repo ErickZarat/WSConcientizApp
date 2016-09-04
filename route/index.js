@@ -34,7 +34,5 @@ var ruta=require('express').Router();
         ruta.post('/evento',evento.add);
         ruta.get('/evento/:id',evento.get);
 
-        
-
         return ruta;
 });
