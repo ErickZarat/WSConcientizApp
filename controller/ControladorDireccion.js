@@ -27,7 +27,7 @@ module.exports=function (modelo) {
                 }
             }).then(function (direccion) {
                 if(direccion){
-                    direccion.updateAttributes(req.body).then(function (direccion) {
+                    direccion.updateAttributes(req.body).then(function () {
                         res.json({"mensaje":"La dirección se ha modificado"})
                     });
                 }
