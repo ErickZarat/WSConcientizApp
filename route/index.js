@@ -7,6 +7,12 @@ var ruta=require('express').Router();
         var zona=require('../controller/ControladorZona.js')(modelo);
         var direccion=require('../controller/ControladorDireccion.js')(modelo);
         var evento=require('../controller/ControladorEvento.js')(modelo);
+
+        var apoyo=require('../controller/ControladorApoyo.js')(modelo);
+        var categoria=require('../controller/ControladorCategoria.js')(modelo);
+        var problema=require('../controller/ControladorProblema.js')(modelo);
+        var prueba=require('../controller/ControladorPrueba.js')(modelo);
+        var solucion=require('../controller/ControladorSolucion.js')(modelo);
             ruta.get('/',function(peticion,respuesta){
             respuesta.send("Servicio iniciado");
         });
@@ -18,8 +24,6 @@ var ruta=require('express').Router();
         ruta.post('/usuario/login',usuario.login);
 
         ruta.get('/token',usuario.tokenGenerator);
-
-        ruta.post('/prueba',direccion.add);
 
         //Token Validation
         ruta.use(usuario.tokenMiddleware);
@@ -33,6 +37,19 @@ var ruta=require('express').Router();
         ruta.put('/evento/:id',evento.edit);
         ruta.post('/evento',evento.add);
         ruta.get('/evento/:id',evento.get);
+
+        ruta.get('/apoyo/:id', apoyo.list);
+        ruta.get('/categoria/:id', categoria.list);
+
+        ruta.get('/problema/:id', problema.list);
+        ruta.post('/problema',problema.add);
+
+        ruta.get('/prueba/:id', prueba.list);
+        ruta.post('/prueba', prueba.add);
+
+        ruta.get('/solucion/:id', solucion.list);
+        ruta.put('/solucion/:id',solucion.edit );
+        ruta.post('/solucion', solucion.add);
 
         return ruta;
 });
